@@ -23,6 +23,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import MinMaxScaler
 from multiprocessing import Process
 
+
+np.random.seed(1)
 df = pd.read_csv('train.csv') #leggo il file
 df = df.drop(df.columns[[0, 3, 6, 7, 8, 11]], axis=1) # rimuovo le colonne che ritengo inutili
 df = df[df['Age'].notnull()] # rimuovo i record con valore nullo per l' età
@@ -119,11 +121,11 @@ def fitModel(model, data, label):
 
 # classificatori
 for_cla = RandomForestClassifier(n_estimators=500, n_jobs=-1)
-nn = MLPClassifier(hidden_layer_sizes=(20,30,4), max_iter=1500, activation='logistic')
-sv = SVC(C=2.4, degree=4)
+nn = MLPClassifier(hidden_layer_sizes=(20,20,20), alpha=1e-10, max_iter=2500, activation='relu')
+sv = SVC(C=2, degree=5, kernel='rbf')
 dt = DecisionTreeClassifier()
 gnb = GaussianNB()
-mnb = MultinomialNB(alpha=1.2)
+mnb = MultinomialNB(alpha=1e-10)
 ada = AdaBoostClassifier(n_estimators=500)
 log = LogisticRegression(penalty='l2', max_iter=6000)
 

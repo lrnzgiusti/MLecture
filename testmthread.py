@@ -25,16 +25,16 @@ def someOther():
 def someFun():
     print ("someFun")
 
-# 
-#t1 = threading.Thread(target=someOtherFunc)
-#t1.start()
-#
-#t2 = threading.Thread(target=someFun)
-#t2.start()
-#
-#
-#t1.join()
-#t2.join()
+ 
+t1 = threading.Thread(target=someOtherFunc)
+t1.start()
+
+t2 = threading.Thread(target=someFun)
+t2.start()
+
+
+t1.join()
+t2.join()
 
 
 
@@ -47,4 +47,4 @@ def runInParallel(*fns):
   for p in proc:
     p.join()
     
-runInParallel(someOther, someOtherFunc, someFun) #call alla funzione che fa partire i processi in parallelo
+#runInParallel(someOther, someOtherFunc, someFun) #call alla funzione che fa partire i processi in parallelo
